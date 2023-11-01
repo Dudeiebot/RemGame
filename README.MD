@@ -1,5 +1,5 @@
 
-These is just an easy way of getting all your items with 0 durability deleted from the Remnant Game
+An easy way of getting all your items with 0 durability deleted from the Remnant Game
 
 ### Check out the Game
 
