@@ -17,7 +17,7 @@ var (
 )
 
 func fetchData(url string) ([]map[string]interface{}, error) {
-	req, err := http.NewRequest("GET", url, nil)
+	req, err := http.NewRequest("GET", url, nil) // fetch data our storage
 	if err != nil {
 		return nil, err
 	}
@@ -29,7 +29,7 @@ func fetchData(url string) ([]map[string]interface{}, error) {
 	}
 	defer resp.Body.Close()
 
-	var data []map[string]interface{}
+	var data []map[string]interface{} // the json data fetched are being represented as array and we return the array
 	decoder := json.NewDecoder(resp.Body)
 	if err := decoder.Decode(&data); err != nil {
 		return nil, err
@@ -38,8 +38,10 @@ func fetchData(url string) ([]map[string]interface{}, error) {
 }
 
 func extractField(data map[string]interface{}, fieldPath string) interface{} {
-	parts := strings.Split(fieldPath, ".")
-	fieldValue := interface{}(data)
+	parts := strings.Split(fieldPath, ".") // the goes through teh array one by one seprated by .
+	fieldValue := interface{}(
+		data,
+	) // we are returning the fiels data so it have to come in as an interface
 
 	for _, part := range parts {
 		fieldValueMap, ok := fieldValue.(map[string]interface{})
@@ -56,8 +58,9 @@ func incinerateItem(wg *sync.WaitGroup, url string, id string) error {
 
 	payload := fmt.Sprintf(`{
 		"itemToIncinerateId": "%s"
-	}`, id)
+	}`, id) // the string our incinerator takes in and that is the id of the item to be incinerated
 
+	// the payload is just the json the PUT statement takes in as an input
 	req, err := http.NewRequest("PUT", url, strings.NewReader(payload))
 	if err != nil {
 		return err
@@ -80,7 +83,7 @@ func main() {
 	flag.Parse()
 
 	if bearerToken == "" {
-		fmt.Println("You can gain Authorization without your bearerToken")
+		fmt.Println("You can not gain Authorization without your bearerToken")
 		os.Exit(1)
 	}
 
@@ -100,6 +103,8 @@ func main() {
 
 		if degradation != nil {
 			if value, ok := degradation.(float64); ok && value == 0 {
+				// i added these switch statement because there are times the storage will be empty and id will be nil then and we cant convert it to string
+				// the id is needed as string cause that is the json taken in by the PUT statement of our api
 				switch id := id.(type) {
 				case string:
 					wg.Add(1)
