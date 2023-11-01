@@ -19,6 +19,6 @@ Get your bearer-Token also cause it is needed for authorization and it is unique
 ## Clone the repostiory
 
 Run `go run main.go -bearer-Token YOURBEARERTOKEN`
-![Final Touch](static/exhibit1.jpeg)
+![Final Touch](static/exhibit.jpeg)
 
 
