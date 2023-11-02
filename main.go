@@ -29,7 +29,7 @@ func fetchData(url string) ([]map[string]interface{}, error) {
 	}
 	defer resp.Body.Close()
 
-	var data []map[string]interface{} // the json data fetched are being represented as array and we return the array
+	var data []map[string]interface{} // the json data fetched are being represented as a slice and we return the slice in a map
 	decoder := json.NewDecoder(resp.Body)
 	if err := decoder.Decode(&data); err != nil {
 		return nil, err
