@@ -103,7 +103,7 @@ func main() {
 
 		if degradation != nil {
 			if value, ok := degradation.(float64); ok && value == 0 {
-				// i added these switch statement because there are times the storage will be empty and id will be nil then and we cant convert it to string
+				// i added these switch statement because there are times the storage will be empty and id will be nil, we cant convert it to string
 				// the id is needed as string cause that is the json taken in by the PUT statement of our api
 				switch id := id.(type) {
 				case string:
