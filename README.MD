@@ -16,6 +16,7 @@ An easy way of getting all your items with 0 durability deleted from the Remnant
 
 
 ### Get your bearer-Token also cause it is needed for authorization and it is unique to you personally. DONT SHARE IT!
+[Bearer Token](https://www.youtube.com/watch?v=ky7syfzGX2E)
 
 
 ### Clone the repostiory
