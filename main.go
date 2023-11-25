@@ -38,7 +38,7 @@ func fetchData(url string) ([]map[string]interface{}, error) {
 }
 
 func extractField(data map[string]interface{}, fieldPath string) interface{} {
-	parts := strings.Split(fieldPath, ".") // the goes through teh array one by one seprated by .
+	parts := strings.Split(fieldPath, ".") // the goes through the array one by one seprated by .
 	fieldValue := interface{}(
 		data,
 	) // we are returning the fiels data so it have to come in as an interface
@@ -60,7 +60,7 @@ func incinerateItem(wg *sync.WaitGroup, url string, id string) error {
 		"itemToIncinerateId": "%s"
 	}`, id) // the string our incinerator takes in and that is the id of the item to be incinerated
 
-	// the payload is just the json the PUT statement takes in as an input
+	// the payload is just the json, the PUT statement takes in as an input
 	req, err := http.NewRequest("PUT", url, strings.NewReader(payload))
 	if err != nil {
 		return err
